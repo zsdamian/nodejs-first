@@ -44,6 +44,9 @@ export const createInMemoryBookRepository = (): BooksRepository => {
             return Promise.resolve(book);
         }, deleteById(id: number): Promise<boolean> {
             const idx = books.findIndex(element => element.id === id);
+            if(idx < 0){
+                return Promise.resolve(false);
+            }
             books.splice(idx, 1);
             return Promise.resolve(true);
         }, getById(id: number): Promise<Book | undefined> {
@@ -51,6 +54,9 @@ export const createInMemoryBookRepository = (): BooksRepository => {
             return Promise.resolve(book);
         }, updateById(id: number, data: Book): Promise<boolean> {
             const idx = books.findIndex(element => element.id === id);
+            if(idx < 0){
+                return Promise.resolve(false);
+            }
             books.splice(idx, 1, data);
             return Promise.resolve(true);
         }

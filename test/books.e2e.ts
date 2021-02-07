@@ -2,6 +2,7 @@ import assert from 'assert';
 import supertest from "supertest";
 
 import {app} from '../src/createApp';
+import * as HTTP from "http";
 
 const request = supertest(app);
 
@@ -127,5 +128,12 @@ describe('Books', () => {
 
         // we expect the test original book set again
         assert.deepStrictEqual(getBooksRequest.body, books);
+    });
+
+    it('should return not found if book not exists', async () => {
+        const getBooksRequest = await request
+            .get('/books/33333')
+            .set('Accept', 'application/json')
+            .expect(404);
     });
 });
