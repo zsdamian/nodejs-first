@@ -1,0 +1,11 @@
+#BUILDER STAGE
+FROM node:fermium-alpine3.12 AS builder
+WORKDIR /tmp
+COPY . /tmp
+RUN npm install
+
+#RUNNER STAGE
+FROM node:fermium-alpine3.12
+WORKDIR /api
+COPY --from=builder /tmp /api
+CMD ["npm", "start-dev"]
