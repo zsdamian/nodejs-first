@@ -1,7 +1,7 @@
 import assert from 'assert';
 import supertest from "supertest";
 
-import {app} from '../src/main';
+import {app} from '../src/createApp';
 
 const request = supertest(app);
 

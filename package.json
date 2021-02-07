@@ -2,7 +2,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node build/src/server.js",
-    "start-dev": "ts-node-dev src/server.ts",
+    "start-dev": ". ./.env && ts-node-dev src/server.ts",
     "eslint": "eslint ./src --ext .ts",
     "docker:prod:build": "docker build -f docker/Dockerfile",
     "docker:dev:build": "docker build -f docker/Dockerfile.debug",
